@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import UserActions from '../../actions/userActions'
-import { history } from '../../services'
 import { Link } from 'react-router'
 
 import './style.css';
@@ -41,7 +40,7 @@ class CreateInvestment extends Component {
             <div className="container">
                 Create Investment Component {getUserProfileLoading && 'Loading...'}
                 <br/>
-                <Link to={'dashboard'}>Go to Dashboard</Link>
+                <Link to={'/'}>Go to Dashboard</Link>
             </div>
         )
     }

@@ -5,12 +5,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from './webpack.config'
 import express from 'express'
-var cors = require('cors');
-var RestClient = require('node-rest-client').Client;
-const parseString = require("xml2js").parseString;
-const jwt = require("jsonwebtoken");
-import Cookies from './utils/CustomCookies';
-var rest_client = new RestClient();
+import cors from 'cors';
 import path from 'path'
 import favicon from 'serve-favicon'
 import routes from './routes'
@@ -19,20 +14,19 @@ import Root from './containers/Root'
 import { renderToString } from 'react-dom/server'
 import { match, createMemoryHistory } from 'react-router'
 import configureStore from './store/configureStore'
+const parseString = require("xml2js").parseString;
+
 import rootSaga from './sagas'
 
 
-var app = express()
+const app = express()
 app.use(cors());
-var port = 3000
+const port = 3000
 
-const jwtKey = "gtp3_secret_key";
-const jwtExpirySeconds = 20;
-const activeSessionSeconds = 28800;
+
 const env = process.argv[4].toLowerCase();
 
 const credentials = {};
-let decodedToken;
 
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
 var compiler = webpack(config)
@@ -57,7 +51,6 @@ const layout = (body, initialState) => (`
 `)
 
 app.use(function(req, res) {
-
   if( env !== 'local'){
     SSORedirect(res,env);
   }
@@ -103,7 +96,7 @@ app.use(function(req, res) {
     let redirect_link = 'https://pfedprod.wal-mart.com/idp/startSSO.ping?PartnerSpId=GTP3&ACSIdx=0';
     res.redirect(redirect_link)
    }
- 
+
 }
 app.post('/api/samlCallback', (req, res) => {
   const SAMLResponse = new Buffer(req.payload.SAMLResponse, "base64");
