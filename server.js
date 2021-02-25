@@ -65,7 +65,6 @@ app.use(function(req, res) {
   // Note that req.url here should be the full URL path from
   // the original request, including the query string.
   match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
-
     if (error) {
       res.status(500).send(error.message)
     } else if (redirectLocation) {
@@ -97,10 +96,10 @@ app.use(function(req, res) {
    if(env === 'dev'){
     let redirect_link = 'https://pfeddev.wal-mart.com/idp/startSSO.ping?PartnerSpId=GTP3&ACSIdx=1';
     res.redirect(redirect_link)
-   }else if(env == 'stag'){
+   }else if(env === 'stg'){
     let redirect_link = 'https://pfedcert.wal-mart.com/idp/startSSO.ping?PartnerSpId=GTP3&ACSIdx=0';
     res.redirect(redirect_link)
-   }else if(env == 'prod'){
+   }else if(env === 'prod'){
     let redirect_link = 'https://pfedprod.wal-mart.com/idp/startSSO.ping?PartnerSpId=GTP3&ACSIdx=0';
     res.redirect(redirect_link)
    }
