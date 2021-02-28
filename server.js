@@ -55,8 +55,7 @@ app.use(function(req, res) {
     SSORedirect(res,env);
   }
   const store = configureStore()
-  // Note that req.url here should be the full URL path from
-  // the original request, including the query string.
+
   match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message)
