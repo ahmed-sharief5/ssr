@@ -1,5 +1,5 @@
 # Portfolio Planning Platform
-This is the repository for GTP3 UI. Please reach out to GTP3_Team@email.wal-mart.com for any issues/assistance.
+This is the repository for GTP3 UI.
 
 ## Commands
 
